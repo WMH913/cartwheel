@@ -12,7 +12,11 @@ export default new Router({
   routes: [
     {path: '/',component: Show},
     {path: '/brand/:mid',component: Brand,props:true},
+<<<<<<< HEAD
     {path: '/details/:sid',component: Details,props:true},
+=======
+    {path: '/details',component: Details},
+>>>>>>> niujing
     {path: '/inquire',component: Inquire},
     {path: '/gallery',component: Gallery},
   ]

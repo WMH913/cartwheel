@@ -10,6 +10,10 @@
 </template>
 <script>
 import { IndexList, IndexSection } from "mint-ui";
+<<<<<<< HEAD
+=======
+
+>>>>>>> niujing
 export default {
   data(){
   return{
@@ -32,7 +36,14 @@ beforeRouteEnter(to,from,next){
       console.log(res.data.data);
       vm.cars=res.data.data;
   })
+<<<<<<< HEAD
   }) 
 }
+=======
+  })
+  
+}
+
+>>>>>>> niujing
 };
 </script>
