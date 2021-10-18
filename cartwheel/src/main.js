@@ -7,6 +7,8 @@ import axios from 'axios'
 import store from './store/index'
 import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
+import less from 'less'
+Vue.use(less)
 
 Vue.use(MintUI)
 Vue.config.productionTip = false
@@ -18,6 +20,7 @@ new Vue({
   el: '#app',
   router,
   store,
+  less,
   components: { App },
   template: '<App/>'
 })
