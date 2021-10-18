@@ -2,56 +2,37 @@
 <div class="all">
     <div class="top">
         <span>车款</span><span>颜色</span>
-        
     </div>
     <div class="center">
         <ul class="pic_ul" >
-        <li v-for="(item,index) in pictures" :key="index">
-            <div class="center-dw">
-                <img v-for="(item2,index2) in item.List" :key="index2" :src="item2">
-                <div class="center-top" @click="zhaun(item)">
-                    <p style="margin-top:15%;">{{item.Name}}</p>
-                    <p>{{item.Count}}</p>
-                </div>
-            </div>
-            
+        <li v-for="(item,index) in morepic" :key="index">
+            <img :v-lazy="item" :src="item">
         </li>
-        
     </ul>
     </div>
 </div>
     
 </template>
 <script>
-import { Lazyload} from 'mint-ui';
-// Vue.use(Lazyload);
+import { Lazyload } from 'mint-ui';
+
 export default ({
+    // Vue.use(Lazyload)
+    components:{
+        Lazyload
+    },
+    props:['SerialID'],
     data:function(){
         return {
-            pictures:[],
-            SerialID:''
+            morepic:[]
         }
     },
     created:function(){
         var app=this
-        this.$axios.get('/v2-car-getImageList.html?SerialID=2573').then(function(res){
-            // console.log(res)
-            
-            app.pictures=res.data.data
-            // console.log(res.data.data)
-            // console.log(app.pictures)
+        this.$axios.get('/v2-car-getCategoryImageList.html?SerialID='+'2573'+'&ImageID='+'7'+'&Page='+'1'+'&PageSize=30&_1531054352382').then(function(res){
+            app.morepic=res.data.data.List;
+            // console.log(res.data.data);
         })
-    },
-    methods:{
-        zhaun(item){
-            this.$router.push({
-                path:'/more',
-                // query:{
-                //     SerialID:this.SerialID,
-                //     ImageID:item.Id
-                // }
-            })
-        }
     }
 })
 </script>
@@ -74,11 +55,14 @@ image[lazy=loading] {
     width: 115px;
     height: 77px;
     background-color: aqua;
+    margin-left: 4%;
+    margin-top: 3%;
     /* position: absolute; */
 }
 .pic_ul li{
     list-style: none;
     float: left;
+    margin-left: 1%;
 }
 .top{
     width: 100%;
