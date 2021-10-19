@@ -10,11 +10,7 @@
   </div>
 </template>
 <script>
-<<<<<<< HEAD
-import { IndexList, IndexSection } from "mint-ui";
-=======
 import {Cell, IndexList, IndexSection } from "mint-ui";
->>>>>>> 62ae72507825573e413064c941c5f0857ab51200
 export default {
   data(){
   return{
@@ -32,20 +28,14 @@ methods:{
 },
 beforeRouteEnter(to,from,next){
   next(function(vm){
+    var a=localStorage.getItem('imgId')
     vm.$axios.get("https://baojia.chelun.com/v2-car-getMasterBrandList.html")
     .then(function(res){
       console.log(res.data.data);
       vm.cars=res.data.data;
   })
-<<<<<<< HEAD
-  })
-  
-}
-
-=======
   }) 
 }
->>>>>>> 62ae72507825573e413064c941c5f0857ab51200
 };
 </script>
 <style scoped>

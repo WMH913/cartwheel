@@ -17,6 +17,7 @@
 import { Lazyload } from 'mint-ui';
 
 export default ({
+    props:['cid','gid'],
     // Vue.use(Lazyload)
     components:{
         Lazyload
@@ -28,8 +29,11 @@ export default ({
         }
     },
     created:function(){
+        // var imgId=window.localStorage.getItem('imgId')
+        // console.log(imgId)
+        console.log(this.$route.params.cid)
         var app=this
-        this.$axios.get('/v2-car-getCategoryImageList.html?SerialID='+'2573'+'&ImageID='+'7'+'&Page='+'1'+'&PageSize=30&_1531054352382').then(function(res){
+        this.$axios.get('/v2-car-getCategoryImageList.html?SerialID='+this.$route.params.cid+'&ImageID='+this.$route.params.gid+'&Page='+'1'+'&PageSize=30&_1531054352382').then(function(res){
             app.morepic=res.data.data.List;
             // console.log(res.data.data);
         })
