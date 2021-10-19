@@ -1,7 +1,6 @@
 <template>
   <div>
     <div>
-<<<<<<< HEAD
       <div
         v-for="(CarProduct, index) in CarProducts"
         :key="index"
@@ -12,10 +11,6 @@
         <span class="pice">{{GroupList.DealerPrice}}</span>
       </mt-cell>
       </div>
-=======
-        真真的2
-        <router-link to="/details">2</router-link>
->>>>>>> wmh
     </div>
   </div>
 </template>
@@ -47,7 +42,7 @@ export default {
   },
   methods: {
     toDetails(val){
-      // console.log(val);
+      console.log(val);
       this.$router.push('/details/'+val)
     }
   }

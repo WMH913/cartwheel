@@ -1,11 +1,10 @@
 <template>
     <div id="all">
         <div id='header'>
-            <div id="header-img" @click="$router.push({
-                path:'/Gallery'
-            })">
+            <div id="header-img" @click="ToImg(details.SerialID)">
                 <img :src="details.CoverPhoto" alt="">
-                <p >{{details.image_url.length}}张照片>>></p>
+                <p >11张照片>>></p>
+                <!-- {{details.image_url.length}} -->
                 <!-- {{pic_count}} -->
             </div>
             <div id="a">
@@ -19,7 +18,7 @@
         <div class="body">
            <div class="select_year">
                 <div class="year">
-                   <span style="padding:6px 20px ">全部</span>
+                   <span style="padding:6px 20px text-align:center">全部</span>
                 </div>
                 <ul class="ul1">
                     <li class="li2" v-for="(item,index) in list" :key="index">
@@ -51,7 +50,7 @@
                     </li>
                 </ul>
            </div>
-            <button class="end-button" type="primary" style="font-weight: bold" size="large">{{details.BottomEntranceTitle}}
+            <button @click="ToAsk(Ask)" class="end-button" type="primary" style="font-weight: bold" size="large">{{details.BottomEntranceTitle}}
                 <p>本地经销商向你报价</p>
             </button>
 
@@ -77,67 +76,69 @@ export default {
        } 
     },
       beforeRouteEnter:function(to,from,next){
-          
+        //   console.log(this.val)
         next(function(vm){
-            vm.$axios.get('/v2-car-getInfoAndListById.html?SerialID='+this.sid).then(function(res){
+            // console.log(1)
+            vm.$axios.get('/v2-car-getInfoAndListById.html?SerialID='+vm.sid).then(function(res){
+                // console.log(2)
+                // console.log(res)
                 vm.details=res.data.data
                 vm.list=res.data.data.list
+                
                 vm.Ask=res.data.data.BottomEntranceLink
-                console.log(res.data.data.BottomEntranceLink)
                 console.log(vm.Ask)
-                console.log(vm.details)
-                // console.log(vm.list)
+        
             })
         })
     },
     methods:{
-        Toask(i){
-            this.$router.push({
-                name:'ask'
-            })
-            console.log(i)
+        ToImg(val){
+
+            window.localStorage.setItem("imgId", this.list.gear_num)
+            
+            this.$router.push('/Gallery/'+val)
+        },
+        ToAsk(aa){
+            console.log(aa)
+            window.location.href=aa
         }
-        // tab1(){
-        //     this.active='tab-container1'
-        // },
-        // tab2(){
-        //     this.active='tab-container2'
-        // },
-        // tab3(){
-        //     this.active='tab-container3'
-        // }
     }
 }
 </script>
-<style scoped lang="less">
+<style scoped>
 .end-button{
     width: 100%;
     background-color: rgb(91,171,248);
-    // font-weight: bold;
+    
     border: none;
     font-size: 22px;
-    // padding: 5px;
+    
     color: white;
-    p{
+   
+}
+.end-button p{
         font-size: 12px;
         color: white;
     }
-}
 .content-d{
-    :last-child{
+    text-align: center;
+}
+.content-d :last-child{
+    
         color: red;
         margin: 0 10px;
         font-weight: bold;
-    }
+    
 }
 .content .content-c{
     font-size: 15px;
     color: gray;
     padding: 10px;
-    span{
+    
+}
+.content .content-c span{
         padding: 0 10px;
     }
-}
 #app{
     background-color: rgb(244,244,244);
 }
@@ -159,7 +160,7 @@ export default {
 #header-img p{
     position: absolute;
     margin: 0;
-    width:100px;
+    width:120px;
     /* height: ; */
     line-height:30px ;
     text-align: center;
@@ -178,20 +179,25 @@ export default {
     padding-left: 5px;
     
     flex: 6;
-    :first-child{
+    
+    
+}
+#header-pric :first-child{
         font-size: 20px;
         margin: 5px 10px;
         color: red;
     }
-    :last-child{
+#header-pric :last-child{
         font-size: 15px;
         margin: 5px 10px;
         color: gray;
     }
-}
 button{
     flex: 4;
     margin: 8px 8px;
+}
+.year{
+    text-align: center;
 }
 .select_year{
     margin-top:5px
@@ -201,7 +207,7 @@ button{
     margin-top: -6px;
 }
 .select_year .year span{
-    float: left;
+
     padding:10px 20px;
 }
 #tab-container1  {
@@ -210,11 +216,7 @@ button{
     display:inline-block;
     margin:0;
     padding: 0 5px;
-    // font-size: 5px;
-    // color: grey;
-    // float: left;
-    // margin: 0;
-    // padding: 0 5px;
+   
 }
 .ul1{
     list-style: none;
@@ -222,7 +224,7 @@ button{
     padding: 0;
 }
 .ul1 .li2{
-    margin-left: 10px;
+    margin: 5px;
   
     padding: 0;
     
@@ -230,18 +232,20 @@ button{
 .ul1 .li2 .xiaoziti {
    font-size: 14px;
    color: grey;
-   span{
-        padding: 0 8px;
-    }
+   
    padding: 0 15px;
    margin: 0px;
    background-color: rgb(244,244,244);
 }
+.ul1 .li2 .xiaoziti span{
+        padding: 0 8px;
+    }
 .content .content-b{
     font-weight: bold;
-    span{
+    
+    
+}
+.content .content-b span{
         padding: 0 10px;
     }
-    // margin: 5px;
-}
 </style>
