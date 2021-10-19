@@ -17,7 +17,7 @@
 <script>
 import { Cell, CellSwipe } from "mint-ui";
 export default {
-  // props:['id'],
+  props:['mid'],
   components: {
     Cell,
     CellSwipe
@@ -31,7 +31,7 @@ export default {
     var app = this;
     this.$axios
       .get(
-        "https://baojia.chelun.com/v2-car-getMakeListByMasterBrandId.html?MasterID=3"
+        "https://baojia.chelun.com/v2-car-getMakeListByMasterBrandId.html?MasterID="+this.mid
       )
       .then(function(res) {
         console.log(res.data.data);
