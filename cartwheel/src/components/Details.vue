@@ -9,8 +9,8 @@
             </div>
             <div id="a">
                 <div id="header-pric">
-                <p>{{details.market_attribute.dealer_price}}</p>
-                <p>指导价{{details.market_attribute.official_refer_price}}</p>
+                <p>{{Newdetails.dealer_price}}</p>
+                <p>指导价{{Newdetails.official_refer_price}}</p>
                 </div>
                 <mt-button type="primary" size="normal">{{details.BottomEntranceTitle}}</mt-button>
             </div>
@@ -72,7 +72,8 @@ export default {
             details:new Object(),
             list:new Object(),
             Ask:new Object(),
-        
+            index:'',
+            Newdetails:new Object()
        } 
     },
       beforeRouteEnter:function(to,from,next){
@@ -83,19 +84,22 @@ export default {
                 // console.log(2)
                 // console.log(res)
                 vm.details=res.data.data
+                vm.Newdetails=res.data.data.market_attribute
+    console.log(vm.Newdetails)
                 vm.list=res.data.data.list
                 
                 vm.Ask=res.data.data.BottomEntranceLink
-                console.log(vm.Ask)
+                // console.log(vm.Ask)
         
             })
         })
     },
     methods:{
         ToImg(val){
-
-            window.localStorage.setItem("imgId", this.list.gear_num)
             
+            window.localStorage.setItem("imgId", this.list[0].gear_num)
+            // console.log(this.list[0].gear_num)
+            // console.log(this.list)
             this.$router.push('/Gallery/'+val)
         },
         ToAsk(aa){

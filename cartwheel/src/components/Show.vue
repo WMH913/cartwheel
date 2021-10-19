@@ -10,11 +10,7 @@
   </div>
 </template>
 <script>
-<<<<<<< HEAD
-import { IndexList, IndexSection } from "mint-ui";
-=======
 import {Cell, IndexList, IndexSection } from "mint-ui";
->>>>>>> 62ae72507825573e413064c941c5f0857ab51200
 export default {
   data(){
   return{
@@ -37,15 +33,8 @@ beforeRouteEnter(to,from,next){
       console.log(res.data.data);
       vm.cars=res.data.data;
   })
-<<<<<<< HEAD
-  })
-  
-}
-
-=======
   }) 
 }
->>>>>>> 62ae72507825573e413064c941c5f0857ab51200
 };
 </script>
 <style scoped>
