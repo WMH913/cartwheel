@@ -26,15 +26,19 @@
 import { Lazyload} from 'mint-ui';
 // Vue.use(Lazyload);
 export default ({
+    props:['bid'],
     data:function(){
         return {
             pictures:[],
-            SerialID:''
+            SerialID:'',
+            gid:''
         }
     },
     created:function(){
+        // console.log(this.bid)
+        this.gid=window.localStorage.getItem('imgId')
         var app=this
-        this.$axios.get('/v2-car-getImageList.html?SerialID=2573').then(function(res){
+        this.$axios.get('/v2-car-getImageList.html?SerialID='+this.bid).then(function(res){
             // console.log(res)
             
             app.pictures=res.data.data
@@ -43,13 +47,10 @@ export default ({
         })
     },
     methods:{
-        zhaun(item){
+        zhaun(){
             this.$router.push({
-                path:'/more',
-                // query:{
-                //     SerialID:this.SerialID,
-                //     ImageID:item.Id
-                // }
+                path:'/more/'+this.bid+'/'+this.gid,
+                
             })
         }
     }

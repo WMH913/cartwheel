@@ -5,7 +5,7 @@ import Brand from '@/components/Brand'
 import Details from '@/components/Details'
 import Inquire from '@/components/Inquire'
 import Gallery from '@/components/Gallery'
-
+import More from '@/components/More'
 Vue.use(Router)
 
 export default new Router({
@@ -14,6 +14,7 @@ export default new Router({
     {path: '/brand/:mid',component: Brand,props:true},
     {path: '/details/:sid',component: Details,props:true},
     {path: '/inquire',component: Inquire},
-    {path: '/gallery',component: Gallery},
+    {path: '/gallery/:bid',component: Gallery,props:true},
+    {path: '/more/:cid/:gid',component: More,props:true},
   ]
 })

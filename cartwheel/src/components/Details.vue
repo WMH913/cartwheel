@@ -96,10 +96,9 @@ export default {
     },
     methods:{
         ToImg(val){
-            
+
             window.localStorage.setItem("imgId", this.list[0].gear_num)
-            // console.log(this.list[0].gear_num)
-            // console.log(this.list)
+            // console.log(a)
             this.$router.push('/Gallery/'+val)
         },
         ToAsk(aa){

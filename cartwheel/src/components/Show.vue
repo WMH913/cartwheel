@@ -28,6 +28,7 @@ methods:{
 },
 beforeRouteEnter(to,from,next){
   next(function(vm){
+    var a=localStorage.getItem('imgId')
     vm.$axios.get("https://baojia.chelun.com/v2-car-getMasterBrandList.html")
     .then(function(res){
       console.log(res.data.data);
