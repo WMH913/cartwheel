@@ -13,6 +13,9 @@ export default new Router({
     {path: '/',component: Show},
     {path: '/brand/:mid',component: Brand,props:true},
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> zhangzizhen
     {path: '/details/:sid',component: Details,props:true},
 =======
     {path: '/details',component: Details},
