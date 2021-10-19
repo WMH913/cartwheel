@@ -2,14 +2,19 @@
   <div>
     <mt-index-list >
       <mt-index-section index="品牌" >        
-        <mt-cell v-for="(car,index) in cars" :key="index" :title="car.Name" @click.native="getmastId(car.MasterID)">
+        <mt-cell class="title" v-for="(car,index) in cars" :key="index" :title="car.Name" @click.native="getmastId(car.MasterID)">
+        <img slot="icon" :src="car.CoverPhoto" width="32" height="32">
         </mt-cell>
       </mt-index-section>
     </mt-index-list>
   </div>
 </template>
 <script>
+<<<<<<< HEAD
 import { IndexList, IndexSection } from "mint-ui";
+=======
+import {Cell, IndexList, IndexSection } from "mint-ui";
+>>>>>>> 62ae72507825573e413064c941c5f0857ab51200
 export default {
   data(){
   return{
@@ -23,7 +28,7 @@ methods:{
   }
 },
   components:{
-  IndexList, IndexSection
+  IndexList, IndexSection,Cell
 },
 beforeRouteEnter(to,from,next){
   next(function(vm){
@@ -32,9 +37,17 @@ beforeRouteEnter(to,from,next){
       console.log(res.data.data);
       vm.cars=res.data.data;
   })
+<<<<<<< HEAD
   })
   
 }
 
+=======
+  }) 
+}
+>>>>>>> 62ae72507825573e413064c941c5f0857ab51200
 };
 </script>
+<style scoped>
+
+</style>
